@@ -3,7 +3,6 @@
 # throughout this file
 import pygame
 clock = pygame.time.Clock()
-dt = 0
 
 #additional files
 from constants import *
@@ -13,6 +12,7 @@ from player import *
 
 def main():
     pygame.init()
+    dt = 0
 
     print("Starting Asteroids!")
     print(f"Screen width: {SCREEN_WIDTH}")
@@ -32,6 +32,8 @@ def main():
                 pygame.quit()
 
         screen.fill((0, 0, 0))
+
+        player.update(dt)
 
         player.draw(screen)
 
