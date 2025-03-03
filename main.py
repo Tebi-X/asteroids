@@ -7,8 +7,10 @@ clock = pygame.time.Clock()
 #additional files
 from constants import *
 
-#import player module
-from player import *
+#import player, asteroid and asteroid field modules
+from player import Player
+from asteroid import Asteroid
+from asteroidfield import AsteroidField
 
 def main():
     pygame.init()
@@ -27,11 +29,18 @@ def main():
     #Create groups
     updatables = pygame.sprite.Group()
     drawables = pygame.sprite.Group()
+    asteroids = pygame.sprite.Group()
 
     #Create player and set its containers
     Player.containers = (updatables, drawables)
     player = Player(x, y)
-    
+
+    #Set asteroid container, its instance is done at asteroid field class definition
+    Asteroid.containers = (asteroids, updatables, drawables)
+
+    #Creaste asteroid field and set its containers
+    AsteroidField.containers = (updatables)
+    asteroidfield = AsteroidField()
 
     while True:
         for event in pygame.event.get():
