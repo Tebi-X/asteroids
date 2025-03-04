@@ -14,6 +14,7 @@ from constants import *
 from player import Player
 from asteroid import Asteroid
 from asteroidfield import AsteroidField
+from shot import Shot
 
 def main():
     pygame.init()
@@ -33,6 +34,7 @@ def main():
     updatables = pygame.sprite.Group()
     drawables = pygame.sprite.Group()
     asteroids = pygame.sprite.Group()
+    shots = pygame.sprite.Group()
 
     #Create player and set its containers
     Player.containers = (updatables, drawables)
@@ -41,9 +43,12 @@ def main():
     #Set asteroid container, its instance is done at asteroid field class definition
     Asteroid.containers = (asteroids, updatables, drawables)
 
-    #Creaste asteroid field and set its containers
+    #Create asteroid field and set its containers
     AsteroidField.containers = (updatables)
     asteroidfield = AsteroidField()
+
+    #Set shots container
+    Shot.containers = (shots, updatables, drawables)
 
     while True:
         for event in pygame.event.get():
