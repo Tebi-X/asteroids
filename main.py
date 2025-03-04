@@ -4,6 +4,9 @@
 import pygame
 clock = pygame.time.Clock()
 
+#import sys to use system exit exception
+import sys
+
 #additional files
 from constants import *
 
@@ -54,6 +57,11 @@ def main():
 
         for object in drawables:
             object.draw(screen)
+
+        for asteroid in asteroids:
+            if asteroid.collision(player):
+                print("Game over!")
+                sys.exit()
 
         pygame.display.flip()
         
