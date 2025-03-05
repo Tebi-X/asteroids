@@ -30,7 +30,7 @@ def main():
     x = SCREEN_WIDTH / 2
     y = SCREEN_HEIGHT / 2
 
-    #Create groups
+    #Create groupsd
     updatables = pygame.sprite.Group()
     drawables = pygame.sprite.Group()
     asteroids = pygame.sprite.Group()
@@ -67,6 +67,10 @@ def main():
             if asteroid.collision(player):
                 print("Game over!")
                 sys.exit()
+            for shot in shots:
+                if asteroid.collision(shot):
+                    asteroid.split()
+                    shot.kill()
 
         pygame.display.flip()
         
